@@ -1,0 +1,11 @@
+/* Hover effect for dropdown items */
+.dropdown-item.hovered {
+    background-color: #ddd !important; /* Light mode hover */
+    color: #000 !important; /* Light mode text color on hover */
+  }
+  
+  .dropdown-item:hover {
+    background-color: #5c1abe !important; /* Dark mode hover */
+    color: #fff !important; /* Dark mode text color on hover */
+  }
+  
