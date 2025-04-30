@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container text-center">
         {/* Copyright and Author Info */}
         <p className="mb-0">
-          &copy; {new Date().getFullYear()} WordWiz. Made with ❤️ by{' '}
+          &copy; {new Date().getFullYear()} DevWiz. Made with ❤️ by{' '}
           <a
             href="https://www.linkedin.com/in/tamminaina-manikiran-85b03726a/"
             target="_blank"

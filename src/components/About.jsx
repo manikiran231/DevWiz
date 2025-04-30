@@ -40,7 +40,7 @@ export default function About() {
     return (
         <div style={pageBackground}>
             <div className="container">
-                <h1 className="my-4 text-center">About WordWiz</h1>
+                <h1 className="my-4 text-center">About DevWiz</h1>
 
                 <div className="accordion" id="accordionExample">
                     {/* Purpose */}
@@ -55,7 +55,7 @@ export default function About() {
                                 aria-expanded="true"
                                 aria-controls="collapseOne"
                             >
-                                📌 Purpose of WordWiz
+                                📌 Purpose of DevWiz
                             </button>
                         </h2>
                         <div
@@ -64,7 +64,7 @@ export default function About() {
                             data-bs-parent="#accordionExample"
                         >
                             <div className="accordion-body" style={accordionBodyStyle}>
-                                <strong>WordWiz</strong> is a comprehensive toolset designed to help users quickly and easily manage, analyze, and enhance text. Whether you're looking to improve your writing, format data, or test your skills, WordWiz provides everything you need in one place.
+                                <strong>DevWiz</strong> is a comprehensive toolset designed to help users quickly and easily manage, analyze, and enhance text. Whether you're looking to improve your writing, format data, or test your skills, DevWiz provides everything you need in one place.
                             </div>
                         </div>
                     </div>
@@ -91,12 +91,12 @@ export default function About() {
                         >
                             <div className="accordion-body" style={accordionBodyStyle}>
                                 <ul>
-                                    <li>Text Analysis tools like <strong>uppercase/lowercase conversion</strong>, <strong>word/character count</strong>, and reading time estimation.</li>
+                                    <li>Text Analysis tools like <strong>uppercase/lowercase conversion</strong>, <strong>Word/character count</strong>, and reading time estimation.</li>
                                     <li><strong>Text-to-speech</strong> reader to hear your content aloud.</li>
                                     <li><strong>Color Picker</strong> to select perfect colors for your projects and designs.</li>
                                     <li><strong>JSON Formatter</strong> to format and beautify JSON data with ease.</li>
                                     <li><strong>Typing Test</strong> to measure and improve your typing speed and accuracy.</li>
-                                    <li><strong>Password Generator</strong> to create secure, random passwords for your accounts.</li>
+                                    <li><strong>PassDev Generator</strong> to create secure, random passDevs for your accounts.</li>
                                     <li><strong>Lorem Ipsum Generator</strong> to generate placeholder text for your designs and mockups.</li>
                                     <li><strong>Todo List</strong> with features like adding, deleting, prioritizing, completing tasks, and offline cache support.</li>
                                     <li>Fully <strong>mobile responsive</strong> interface for seamless use on all devices.</li>
