@@ -59,6 +59,7 @@ export default function Navbar({ mode }) {
                 <li><Link className="dropdown-item" to="/typingtest" style={dropdownItemStyle}>⌨️ Typing Test</Link></li>
                 <li><Link className="dropdown-item" to="/passwordgenerator" style={dropdownItemStyle}>🔑 Password Generator</Link></li>
                 <li><Link className="dropdown-item" to="/loremgenerator" style={dropdownItemStyle}>📝 Lorem Generator</Link></li>
+                <li><Link className="dropdown-item" to="/todoapp" style={dropdownItemStyle}>📝 To Do List</Link></li>
               </ul>
             </li>
             <li className="nav-item">

@@ -57,6 +57,7 @@ export default function Dashboard({ mode, toggleTheme }) {
         <div className="row">
           {[
             { title: '📝 Text Analyzer', desc: 'Analyze your text for readability, word count, time taken to read, speech text and more.', route: 'textutils' },
+            { title: '📋 Todo List', desc: 'Keep track of your tasks, mark them done, prioritize, and manage easily.', route: 'todoapp' },
             { title: '🎨 Color Picker', desc: 'Pick any color you need for your design or project.', route: 'colorpicker' },
             { title: '🔧 JSON Formatter', desc: 'Format and beautify your JSON data quickly and effectively.', route: 'jsonformatter' },
             { title: '⏱️ Typing Test', desc: 'Test your typing speed and improve your typing skills.', route: 'typingtest' },

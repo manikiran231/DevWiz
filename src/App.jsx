@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import About from './components/About';
 import Textform from './components/textform';
 import Footer from './components/Footer';
+import TodoApp from './components/TodoApp';
 import './App.css'; 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/loremgenerator" element={<LoremGenerator />} />
           <Route path="/about" element={<About />} />
           <Route path="/textutils" element={<Textform />} />
+          <Route path="/todoapp" element={<TodoApp mode="dark" />} />
         </Routes>
         <Footer />
       </div>

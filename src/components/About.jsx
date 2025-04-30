@@ -98,6 +98,7 @@ export default function About() {
                                     <li><strong>Typing Test</strong> to measure and improve your typing speed and accuracy.</li>
                                     <li><strong>Password Generator</strong> to create secure, random passwords for your accounts.</li>
                                     <li><strong>Lorem Ipsum Generator</strong> to generate placeholder text for your designs and mockups.</li>
+                                    <li><strong>Todo List</strong> with features like adding, deleting, prioritizing, completing tasks, and offline cache support.</li>
                                     <li>Fully <strong>mobile responsive</strong> interface for seamless use on all devices.</li>
                                 </ul>
                             </div>
