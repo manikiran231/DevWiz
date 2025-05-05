@@ -63,7 +63,7 @@ export default function Navbar({ mode }) {
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link px-3" to="/about" style={{ color: mode === 'light' ? '#000' : '#fff' }}>About</Link>
+              <a className="nav-link px-3" href="#about" style={{ color: mode === 'light' ? '#000' : '#fff' }}>About</a>
             </li>
           </ul>
         </div>
