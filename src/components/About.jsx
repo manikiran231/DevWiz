@@ -38,7 +38,7 @@ export default function About() {
     };
 
     return (
-        <div style={pageBackground}>
+        <div id="about" style={pageBackground}>
             <div className="container">
                 <h1 className="my-4 text-center">About DevWiz</h1>
 
