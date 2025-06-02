@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ReactJson from 'react-json-prettify';
-import 'react-json-prettify/dist/index.css';
+import JSONPretty from 'react-json-pretty';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -58,9 +57,18 @@ export default function JsonFormatter({ mode }) {
         </button>
 
         {formattedJson && (
-          <div className="mt-4">
+          <div className="mt-4" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
             <h4 className="mb-3">Formatted JSON</h4>
-            <ReactJson json={formattedJson} />
+            <div
+              style={{
+                padding: '1rem',
+                backgroundColor: mode === 'light' ? '#e9ecef' : '#2d2a3d',
+                borderRadius: '8px',
+                overflowX: 'auto',
+              }}
+            >
+              <JSONPretty data={formattedJson}></JSONPretty>
+            </div>
           </div>
         )}
       </div>
