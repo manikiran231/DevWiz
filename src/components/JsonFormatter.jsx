@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ReactJson from 'react-json-view'; // Make sure react-json-view is installed
+import ReactJson from 'react-json-prettify';
+import 'react-json-prettify/dist/index.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -28,6 +29,7 @@ export default function JsonFormatter({ mode }) {
       toast.success('JSON formatted successfully!');
     } catch (e) {
       toast.error('Invalid JSON, please check your input.');
+      setFormattedJson(null);
     }
   };
 
@@ -58,7 +60,7 @@ export default function JsonFormatter({ mode }) {
         {formattedJson && (
           <div className="mt-4">
             <h4 className="mb-3">Formatted JSON</h4>
-            <ReactJson src={formattedJson} theme={mode === 'light' ? 'rjv-default' : 'monokai'} />
+            <ReactJson json={formattedJson} />
           </div>
         )}
       </div>
