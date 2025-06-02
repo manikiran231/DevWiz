@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Chatbot from './Chatbot';
 export default function Dashboard({ mode, toggleTheme }) {
   const navigate = useNavigate();
 
-  const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)'; // based on your uploaded image
+  const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)';
 
   const containerStyle = {
     background: mode === 'light' ? '#f8f9fa' : darkGradientBackground,
@@ -15,7 +15,7 @@ export default function Dashboard({ mode, toggleTheme }) {
   };
 
   const cardBaseStyle = {
-    background: mode === 'light' ? '#fff' : 'rgba(255, 255, 255, 0.08)', // slightly lighter than before
+    background: mode === 'light' ? '#fff' : 'rgba(255, 255, 255, 0.08)',
     border: mode === 'light' ? '1px solid #ddd' : '1px solid rgba(255,255,255,0.15)',
     color: mode === 'light' ? '#000' : '#fff',
     borderRadius: '12px',
@@ -49,21 +49,26 @@ export default function Dashboard({ mode, toggleTheme }) {
 
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
+  const tools = [
+    { title: '📝 Text Analyzer', desc: 'Analyze your text for readability, word count, time taken to read, speech text and more.', route: 'textutils' },
+    { title: '📋 Todo List', desc: 'Keep track of your tasks, mark them done, prioritize, and manage easily.', route: 'todoapp' },
+    { title: '🖊️ Markdown Editor', desc: 'Write and preview Markdown with GitHub-flavored formatting.', route: 'markdowneditor' },
+    { title: '🔧 JSON Formatter', desc: 'Format and beautify your JSON data quickly and effectively.', route: 'jsonformatter' },
+    { title: '📬 Spam Email Generator', desc: 'Generate mock spam emails for fun or testing.', route: 'spamemailgenerator' },
+    { title: '🔑 Password Generator', desc: 'Generate secure and random passwords for your accounts.', route: 'passwordgenerator' },
+    { title: '📄 Lorem Ipsum Generator', desc: 'Generate dummy text for your design mockups and projects.', route: 'loremgenerator' },
+    { title: '🔳 QR Code Generator', desc: 'Create QR codes for URL links, text, or some other data.', route: 'qrcodegenerator' },
+    { title: '🎨 Color Picker', desc: 'Pick any color you need for your design or project.', route: 'colorpicker' },
+    { title: '⏱️ Typing Test', desc: 'Test your typing speed and improve your typing skills.', route: 'typingtest' },
+  ];
+
   return (
     <div style={containerStyle}>
       <div className="container text-center">
         <h1 className="mb-5">🛠️ Tools Dashboard</h1>
 
         <div className="row">
-          {[
-            { title: '📝 Text Analyzer', desc: 'Analyze your text for readability, word count, time taken to read, speech text and more.', route: 'textutils' },
-            { title: '📋 Todo List', desc: 'Keep track of your tasks, mark them done, prioritize, and manage easily.', route: 'todoapp' },
-            { title: '🎨 Color Picker', desc: 'Pick any color you need for your design or project.', route: 'colorpicker' },
-            { title: '🔧 JSON Formatter', desc: 'Format and beautify your JSON data quickly and effectively.', route: 'jsonformatter' },
-            { title: '⏱️ Typing Test', desc: 'Test your typing speed and improve your typing skills.', route: 'typingtest' },
-            { title: '🔑 Password Generator', desc: 'Generate secure and random passwords for your accounts.', route: 'passwordgenerator' },
-            { title: '📄 Lorem Ipsum Generator', desc: 'Generate dummy text for your design mockups and projects.', route: 'loremgenerator' }
-          ].map((tool, idx) => (
+          {tools.map((tool, idx) => (
             <div className="col-md-4" key={idx}>
               <div
                 className="card mb-4"
@@ -82,7 +87,7 @@ export default function Dashboard({ mode, toggleTheme }) {
                     className="btn btn-primary"
                     style={buttonStyle}
                     onClick={(e) => {
-                      e.stopPropagation(); // prevent card click trigger
+                      e.stopPropagation();
                       handleNavigation(tool.route);
                     }}
                   >
@@ -94,6 +99,7 @@ export default function Dashboard({ mode, toggleTheme }) {
           ))}
         </div>
       </div>
+      <Chatbot/>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import ReactJson from 'react-json-view'; // Install react-json-view
+import ReactJson from 'react-json-view'; // Make sure react-json-view is installed
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function JsonFormatter({ mode }) {
   const [json, setJson] = useState('');
   const [formattedJson, setFormattedJson] = useState(null);
 
-  // Dark gradient background for JSON Formatter
   const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)';
 
   const containerStyle = {
@@ -24,9 +25,9 @@ export default function JsonFormatter({ mode }) {
     try {
       const parsedJson = JSON.parse(json);
       setFormattedJson(parsedJson);
-      alert('JSON formatted successfully!');
+      toast.success('JSON formatted successfully!');
     } catch (e) {
-      alert('Invalid JSON');
+      toast.error('Invalid JSON, please check your input.');
     }
   };
 
@@ -34,7 +35,7 @@ export default function JsonFormatter({ mode }) {
     <div style={containerStyle}>
       <div className="container">
         <h2 className="mb-4 text-center">📑 JSON Formatter</h2>
-        
+
         <div className="mb-3">
           <textarea
             className="form-control"
@@ -43,17 +44,17 @@ export default function JsonFormatter({ mode }) {
             value={json}
             onChange={handleJsonChange}
             style={{
-              backgroundColor: mode === 'light' ? 'white' : 'rgb(68, 60, 105)', // Darker background for dark mode
+              backgroundColor: mode === 'light' ? 'white' : 'rgb(68, 60, 105)',
               color: mode === 'light' ? 'black' : 'white',
               borderColor: mode === 'light' ? '#ced4da' : '#555',
             }}
           ></textarea>
         </div>
-        
+
         <button className="btn btn-primary" onClick={handleFormatJson}>
           Format JSON
         </button>
-        
+
         {formattedJson && (
           <div className="mt-4">
             <h4 className="mb-3">Formatted JSON</h4>
@@ -61,6 +62,7 @@ export default function JsonFormatter({ mode }) {
           </div>
         )}
       </div>
+      <ToastContainer position="top-right" autoClose={2500} hideProgressBar />
     </div>
   );
 }

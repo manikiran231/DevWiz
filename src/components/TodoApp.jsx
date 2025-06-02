@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function TodoApp({ mode = 'light' }) {
   const [tasks, setTasks] = useState([]);
@@ -63,28 +65,57 @@ export default function TodoApp({ mode = 'light' }) {
         { id: Date.now(), text: input, done: false, priority: false },
       ]);
       setInput('');
+      toast.success('Task added!');
+    } else {
+      toast.warn('Please enter a task');
     }
   };
 
   const toggleDone = (id) => {
-    setTasks(tasks.map(t => t.id === id ? { ...t, done: !t.done } : t));
+    setTasks(tasks.map(t => {
+      if (t.id === id) {
+        toast.info(`Task marked ${t.done ? 'incomplete' : 'complete'}`);
+        return { ...t, done: !t.done };
+      }
+      return t;
+    }));
   };
 
   const deleteTask = (id) => {
     setTasks(tasks.filter(t => t.id !== id));
+    toast.error('Task deleted');
   };
 
   const togglePriority = (id) => {
-    setTasks(tasks.map(t => t.id === id ? { ...t, priority: !t.priority } : t));
+    setTasks(tasks.map(t => {
+      if (t.id === id) {
+        toast.info(t.priority ? 'Removed from important' : 'Marked as important');
+        return { ...t, priority: !t.priority };
+      }
+      return t;
+    }));
   };
 
   const clearCompleted = () => {
+    const completedCount = tasks.filter(t => t.done && !t.priority).length;
+    if (completedCount === 0) {
+      toast.info('No completed tasks to remove');
+      return;
+    }
     setTasks(tasks.filter(t => !t.done || t.priority));
+    toast.success(`Removed ${completedCount} completed task${completedCount > 1 ? 's' : ''}`);
   };
 
   const clearAll = () => {
+    const nonImportantCount = tasks.filter(t => !t.priority).length;
+    if (nonImportantCount === 0) {
+      toast.info('No non-important tasks to clear');
+      return;
+    }
+    // Using toast to confirm action with a simple confirm-like toast button:
     if (window.confirm('Clear all non-important tasks?')) {
       setTasks(tasks.filter(t => t.priority));
+      toast.success(`Cleared ${nonImportantCount} non-important task${nonImportantCount > 1 ? 's' : ''}`);
     }
   };
 
@@ -202,6 +233,9 @@ export default function TodoApp({ mode = 'light' }) {
           </button>
         </div>
       </div>
+
+      {/* Toast container */}
+      <ToastContainer position="top-right" autoClose={2500} hideProgressBar />
     </div>
   );
 }

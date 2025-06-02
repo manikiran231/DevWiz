@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Textform(props) {
     const [text, setText] = useState(() => {
@@ -6,17 +8,33 @@ export default function Textform(props) {
     });
 
     const handleChange = (event) => setText(event.target.value);
-    const toUpperCase = () => setText(text.toUpperCase());
-    const toLowerCase = () => setText(text.toLowerCase());
-    const clearText = () => setText("");
+
+    const toUpperCase = () => {
+        setText(text.toUpperCase());
+        toast.info("Converted to UPPERCASE");
+    };
+
+    const toLowerCase = () => {
+        setText(text.toLowerCase());
+        toast.info("Converted to lowercase");
+    };
+
+    const clearText = () => {
+        setText("");
+        toast.warn("Text cleared");
+    };
+
     const copyText = () => {
         navigator.clipboard.writeText(text);
-        alert("Text Copied to Clipboard!");
+        toast.success("Text copied to clipboard!");
     };
+
     const removeExtraSpaces = () => {
         let newText = text.replace(/\s+/g, ' ').trim();
         setText(newText);
+        toast.info("Extra spaces removed");
     };
+
     const capitalizeEachWord = () => {
         let newText = text
             .toLowerCase()
@@ -24,7 +42,9 @@ export default function Textform(props) {
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
         setText(newText);
+        toast.info("Capitalized each word");
     };
+
     const downloadText = () => {
         const element = document.createElement("a");
         const file = new Blob([text], { type: 'text/plain' });
@@ -32,13 +52,17 @@ export default function Textform(props) {
         element.download = "textutils-output.txt";
         document.body.appendChild(element);
         element.click();
+        document.body.removeChild(element);
+        toast.success("Text file downloaded");
     };
+
     const speakText = () => {
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(text);
             speechSynthesis.speak(utterance);
+            toast.info("Speaking the text...");
         } else {
-            alert('Text-to-Speech not supported in this browser.');
+            toast.error("Text-to-Speech not supported in this browser");
         }
     };
 
@@ -52,7 +76,7 @@ export default function Textform(props) {
     const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)';
 
     // Light purple gradient for the cards
-    const lightPurpleCardBackground = 'linear-gradient(135deg,rgb(39, 26, 122),rgb(39, 26, 122))';
+    const lightPurpleCardBackground = 'rgb(39, 26, 100)';
 
     const containerStyle = {
         background: darkGradientBackground,
@@ -127,6 +151,8 @@ export default function Textform(props) {
                     {text.length > 0 ? text : "Nothing to preview yet..."}
                 </p>
             </div>
+
+            <ToastContainer position="top-right" autoClose={2500} hideProgressBar />
         </div>
     );
 }

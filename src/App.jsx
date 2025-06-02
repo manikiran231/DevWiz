@@ -11,6 +11,10 @@ import About from './components/About';
 import Textform from './components/textform';
 import Footer from './components/Footer';
 import TodoApp from './components/TodoApp';
+import MarkdownEditor from './components/MarkdownEditor';
+import QrCodeGenerator from './components/QrCodeGenerator';
+import SpamEmailGenerator from './components/SpamEmailGenerator';
+import Chatbot from './components/Chatbot';
 import './App.css'; 
 function App() {
   return (
@@ -28,7 +32,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/textutils" element={<Textform />} />
           <Route path="/todoapp" element={<TodoApp mode="dark" />} />
+          <Route path="/markdowneditor" element={<MarkdownEditor />} />
+          <Route path="/qrcodegenerator" element={<QrCodeGenerator />} />
+          <Route path="/spamemailgenerator" element={<SpamEmailGenerator />} />
         </Routes>
+        <Chatbot/>
         <Footer />
       </div>
     </Router>

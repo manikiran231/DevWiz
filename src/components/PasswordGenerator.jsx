@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function PasswordGenerator({ mode }) {
   const [password, setPassword] = useState('');
@@ -23,6 +25,11 @@ export default function PasswordGenerator({ mode }) {
     if (includeNumbers) characterPool += characters.numbers;
     if (includeSpecialChars) characterPool += characters.specialChars;
 
+    if (characterPool.length === 0) {
+      toast.error('Please select at least one character type!');
+      return;
+    }
+
     let newPassword = '';
     for (let i = 0; i < length; i++) {
       newPassword += characterPool.charAt(Math.floor(Math.random() * characterPool.length));
@@ -32,7 +39,7 @@ export default function PasswordGenerator({ mode }) {
   };
 
   // Styles for light/dark mode
-  const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)'; // Gradient for dark mode
+  const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)';
   const containerStyle = {
     minHeight: '100vh',
     background: mode === 'light' ? 'linear-gradient(45deg, #f8f9fa, #e0e0e0)' : darkGradientBackground,
@@ -41,11 +48,11 @@ export default function PasswordGenerator({ mode }) {
     transition: 'all 0.5s ease',
   };
 
-  // Styles for form fields and buttons
+  // Fixing input background colors (removed invalid '#rgb(...)' format)
   const inputFieldStyle = {
-    backgroundColor: mode === 'light' ? '#rgb(68, 60, 105)' : '#rgb(68, 60, 105)',
-    color: mode === 'light' ? 'black' : 'black',
-    borderColor: mode === 'light' ? '#rgb(68, 60, 105)' : '#rgb(68, 60, 105)',
+    backgroundColor: mode === 'light' ? 'white' : 'rgb(68, 60, 105)',
+    color: mode === 'light' ? 'black' : 'white',
+    borderColor: mode === 'light' ? 'rgb(68, 60, 105)' : 'rgb(68, 60, 105)',
     borderRadius: '8px',
     padding: '10px',
     transition: 'all 0.3s ease',
@@ -57,6 +64,7 @@ export default function PasswordGenerator({ mode }) {
     alignItems: 'center',
     cursor: 'pointer',
     transition: 'all 0.3s ease',
+    marginBottom: '10px',
   };
 
   const customCheckboxStyle = {
@@ -94,6 +102,12 @@ export default function PasswordGenerator({ mode }) {
     e.target.style.borderColor = buttonStyle.borderColor;
   };
 
+  const handleCopy = () => {
+    if (!password) return;
+    navigator.clipboard.writeText(password);
+    toast.success('Password copied to clipboard!');
+  };
+
   return (
     <div style={containerStyle}>
       <div className="container text-center">
@@ -105,7 +119,7 @@ export default function PasswordGenerator({ mode }) {
             type="number"
             className="form-control"
             value={length}
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => setLength(Number(e.target.value))}
             min="8"
             max="20"
             style={inputFieldStyle}
@@ -119,8 +133,11 @@ export default function PasswordGenerator({ mode }) {
             checked={includeUppercase}
             onChange={() => setIncludeUppercase(!includeUppercase)}
             style={customCheckboxStyle}
+            id="uppercase-checkbox"
           />
-          <label className="form-check-label">Include Uppercase Letters</label>
+          <label className="form-check-label" htmlFor="uppercase-checkbox">
+            Include Uppercase Letters
+          </label>
         </div>
 
         <div className="form-check" style={checkboxStyle}>
@@ -130,8 +147,11 @@ export default function PasswordGenerator({ mode }) {
             checked={includeLowercase}
             onChange={() => setIncludeLowercase(!includeLowercase)}
             style={customCheckboxStyle}
+            id="lowercase-checkbox"
           />
-          <label className="form-check-label">Include Lowercase Letters</label>
+          <label className="form-check-label" htmlFor="lowercase-checkbox">
+            Include Lowercase Letters
+          </label>
         </div>
 
         <div className="form-check" style={checkboxStyle}>
@@ -141,8 +161,11 @@ export default function PasswordGenerator({ mode }) {
             checked={includeNumbers}
             onChange={() => setIncludeNumbers(!includeNumbers)}
             style={customCheckboxStyle}
+            id="numbers-checkbox"
           />
-          <label className="form-check-label">Include Numbers</label>
+          <label className="form-check-label" htmlFor="numbers-checkbox">
+            Include Numbers
+          </label>
         </div>
 
         <div className="form-check" style={checkboxStyle}>
@@ -152,8 +175,11 @@ export default function PasswordGenerator({ mode }) {
             checked={includeSpecialChars}
             onChange={() => setIncludeSpecialChars(!includeSpecialChars)}
             style={customCheckboxStyle}
+            id="specialchars-checkbox"
           />
-          <label className="form-check-label">Include Special Characters</label>
+          <label className="form-check-label" htmlFor="specialchars-checkbox">
+            Include Special Characters
+          </label>
         </div>
 
         <button
@@ -178,7 +204,7 @@ export default function PasswordGenerator({ mode }) {
             />
             <button
               className="btn btn-success mt-3"
-              onClick={() => {navigator.clipboard.writeText(password); alert('Copied to clipboard!');}}
+              onClick={handleCopy}
               style={buttonStyle}
               onMouseEnter={handleButtonHover}
               onMouseLeave={handleButtonLeave}
@@ -188,6 +214,8 @@ export default function PasswordGenerator({ mode }) {
           </div>
         )}
       </div>
+
+      <ToastContainer position="top-right" autoClose={2500} hideProgressBar />
     </div>
   );
 }

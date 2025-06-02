@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LoremGenerator({ mode }) {
   const [paragraphs, setParagraphs] = useState(1);
@@ -15,21 +17,19 @@ export default function LoremGenerator({ mode }) {
     setLoremText(newLoremText.trim());
   };
 
-  // Dark gradient background for the page in dark mode
   const darkGradientBackground = 'linear-gradient(135deg, #1b1446, #2a1b6d)';
 
   const containerStyle = {
     minHeight: '100vh',
-    background: mode === 'light' ? '#f8f9fa' : darkGradientBackground, // Apply the background gradient based on mode
+    background: mode === 'light' ? '#f8f9fa' : darkGradientBackground,
     color: mode === 'light' ? '#000' : '#fff',
     padding: '20px',
     transition: 'all 0.5s ease',
   };
 
-  // Styles for input fields (number of paragraphs) and textarea (output)
   const inputFieldStyle = {
-    backgroundColor: mode === 'light' ? 'rgb(68, 60, 105)' : '#rgb(68, 60, 105)',
-    color: mode === 'light' ? 'black' : 'black',
+    backgroundColor: mode === 'light' ? 'white' : 'rgb(68, 60, 105)',
+    color: mode === 'light' ? 'black' : 'white',
     borderColor: mode === 'light' ? '#ced4da' : '#555',
   };
 
@@ -37,6 +37,11 @@ export default function LoremGenerator({ mode }) {
     backgroundColor: mode === 'light' ? '#ffffff' : '#444',
     color: mode === 'light' ? 'black' : '#fff',
     borderColor: mode === 'light' ? '#ced4da' : '#555',
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(loremText);
+    toast.success('📋 Copied to clipboard!');
   };
 
   return (
@@ -53,14 +58,11 @@ export default function LoremGenerator({ mode }) {
             onChange={(e) => setParagraphs(e.target.value)}
             min="1"
             max="10"
-            style={inputFieldStyle} // Apply styles for input field
+            style={inputFieldStyle}
           />
         </div>
 
-        <button
-          className="btn btn-primary my-3"
-          onClick={() => generateLorem(paragraphs)}
-        >
+        <button className="btn btn-primary my-3" onClick={() => generateLorem(paragraphs)}>
           Generate Lorem Ipsum
         </button>
 
@@ -72,17 +74,16 @@ export default function LoremGenerator({ mode }) {
               rows="8"
               value={loremText}
               readOnly
-              style={{ ...outputFieldStyle, resize: 'none' }} // Apply styles for output field
+              style={{ ...outputFieldStyle, resize: 'none' }}
             />
-            <button
-              className="btn btn-success mt-3"
-              onClick={() => { navigator.clipboard.writeText(loremText); alert('Copied to clipboard!'); }}
-            >
+            <button className="btn btn-success mt-3" onClick={handleCopy}>
               Copy to Clipboard
             </button>
           </div>
         )}
       </div>
+
+      <ToastContainer position="top-right" autoClose={2500} hideProgressBar />
     </div>
   );
 }

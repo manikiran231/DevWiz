@@ -1,141 +1,129 @@
 import React from 'react';
 
 export default function About() {
-    const pageBackground = {
-        background: 'linear-gradient(135deg, #1b1446, #2a1b6d)', // Dark purple gradient
+    const sectionStyle = {
+        background: 'linear-gradient(135deg, #1b1446, #2a1b6d)',
         color: '#ffffff',
         minHeight: '100vh',
-        padding: '20px',
-        transition: 'all 0.4s ease',
+        padding: '40px 20px',
     };
 
-    const cardStyle = {
-        backgroundColor: '#2d2073', // Slightly lighter purple for cards
-        color: '#e0e0e0',
-        border: '1px solid #3d2e91',
+    const headingStyle = {
+        fontSize: '2rem',
+        fontWeight: 'bold',
+        marginBottom: '20px',
+        borderBottom: '2px solid #3d2e91',
+        paddingBottom: '10px',
+    };
+
+    const paragraphStyle = {
+        fontSize: '1.1rem',
+        lineHeight: '1.8',
+        marginBottom: '40px',
+        color: '#ddd',
+    };
+
+    const servicesGrid = {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '20px',
+        marginBottom: '40px',
+    };
+
+    const card = {
+        backgroundColor: '#2d2073',
         borderRadius: '10px',
-        marginBottom: '15px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-        transition: 'all 0.4s ease',
+        padding: '20px',
+        color: '#e0e0e0',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+        border: '1px solid #3d2e91',
     };
 
-    const accordionButtonStyle = {
-        backgroundColor: '#3b2a91',  // Even lighter purple for button
-        color: 'white',
-        fontWeight: '500',
-        border: 'none',
+    const testimonialStyle = {
+        fontStyle: 'italic',
+        marginBottom: '20px',
+        backgroundColor: '#3b2a91',
+        padding: '15px 20px',
         borderRadius: '8px',
-        padding: '12px',
-        transition: 'background-color 0.3s ease',
-    };
-
-    const accordionBodyStyle = {
-        backgroundColor: '#2a1b6d',   // Body slightly darker than button
-        color: '#dcdcdc',
-        borderTop: '1px solid #483b9b',
-        padding: '15px',
-        borderRadius: '8px',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
     };
 
     return (
-        <div style={pageBackground}>
+        <div style={sectionStyle}>
             <div className="container">
-                <h1 className="my-4 text-center">About DevWiz</h1>
+                <h1 className="text-center mb-5">About DevWiz</h1>
 
-                <div className="accordion" id="accordionExample">
-                    {/* Purpose */}
-                    <div className="accordion-item" style={cardStyle}>
-                        <h2 className="accordion-header">
-                            <button
-                                className="accordion-button"
-                                style={accordionButtonStyle}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne"
-                                aria-expanded="true"
-                                aria-controls="collapseOne"
-                            >
-                                📌 Purpose of DevWiz
-                            </button>
-                        </h2>
-                        <div
-                            id="collapseOne"
-                            className="accordion-collapse collapse show"
-                            data-bs-parent="#accordionExample"
-                        >
-                            <div className="accordion-body" style={accordionBodyStyle}>
-                                <strong>DevWiz</strong> is a comprehensive toolset designed to help users quickly and easily manage, analyze, and enhance text. Whether you're looking to improve your writing, format data, or test your skills, DevWiz provides everything you need in one place.
-                            </div>
-                        </div>
+                {/* About Us */}
+                <h2 style={headingStyle}>Who We Are</h2>
+                <p style={paragraphStyle}>
+                    DevWiz is your digital companion built to simplify everyday development and productivity tasks. Whether you're a developer, student, or content creator, DevWiz equips you with essential tools in one place—fast, functional, and beautifully designed.
+                </p>
+
+                {/* Our Story */}
+                <h2 style={headingStyle}>Our Story</h2>
+                <p style={paragraphStyle}>
+                    We started DevWiz with a simple goal: eliminate the need to juggle multiple tabs and websites for routine tasks. Over time, we grew by listening to our users and constantly expanding our toolkit—today, DevWiz helps thousands manage content, generate assets, and stay organized.
+                </p>
+
+                {/* Services */}
+                <h2 style={headingStyle}>What We Offer</h2>
+                <div style={servicesGrid}>
+                    <div style={card}>
+                        <h4>📝 Text Utilities</h4>
+                        <p>Convert case, count words/chars, estimate reading time, and more.</p>
                     </div>
-
-                    {/* Features */}
-                    <div className="accordion-item" style={cardStyle}>
-                        <h2 className="accordion-header">
-                            <button
-                                className="accordion-button collapsed"
-                                style={accordionButtonStyle}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseTwo"
-                                aria-expanded="false"
-                                aria-controls="collapseTwo"
-                            >
-                                ⚙️ Key Features
-                            </button>
-                        </h2>
-                        <div
-                            id="collapseTwo"
-                            className="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample"
-                        >
-                            <div className="accordion-body" style={accordionBodyStyle}>
-                                <ul>
-                                    <li>Text Analysis tools like <strong>uppercase/lowercase conversion</strong>, <strong>Word/character count</strong>, and reading time estimation.</li>
-                                    <li><strong>Text-to-speech</strong> reader to hear your content aloud.</li>
-                                    <li><strong>Color Picker</strong> to select perfect colors for your projects and designs.</li>
-                                    <li><strong>JSON Formatter</strong> to format and beautify JSON data with ease.</li>
-                                    <li><strong>Typing Test</strong> to measure and improve your typing speed and accuracy.</li>
-                                    <li><strong>PassDev Generator</strong> to create secure, random passDevs for your accounts.</li>
-                                    <li><strong>Lorem Ipsum Generator</strong> to generate placeholder text for your designs and mockups.</li>
-                                    <li><strong>Todo List</strong> with features like adding, deleting, prioritizing, completing tasks, and offline cache support.</li>
-                                    <li>Fully <strong>mobile responsive</strong> interface for seamless use on all devices.</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div style={card}>
+                        <h4>🔊 Text-to-Speech</h4>
+                        <p>Read your content aloud with natural voice playback.</p>
                     </div>
-
-                    {/* Future */}
-                    <div className="accordion-item" style={cardStyle}>
-                        <h2 className="accordion-header">
-                            <button
-                                className="accordion-button collapsed"
-                                style={accordionButtonStyle}
-                                type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseThree"
-                                aria-expanded="false"
-                                aria-controls="collapseThree"
-                            >
-                                🚀 Future Enhancements
-                            </button>
-                        </h2>
-                        <div
-                            id="collapseThree"
-                            className="accordion-collapse collapse"
-                            data-bs-parent="#accordionExample"
-                        >
-                            <div className="accordion-body" style={accordionBodyStyle}>
-                                <ul>
-                                    <li>Grammar checker & <strong>text summarizer</strong> for better text processing.</li>
-                                    <li>Customizable <strong>theme color picker</strong> to personalize your interface.</li>
-                                    <li><strong>Dictionary</strong> and <strong>AI integrations</strong> for advanced text analysis and improvements.</li>
-                                    <li><strong>Multi-language support</strong> for global accessibility.</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div style={card}>
+                        <h4>🧾 Markdown Editor</h4>
+                        <p>Write and preview markdown with GitHub-style formatting.</p>
                     </div>
+                    <div style={card}>
+                        <h4>🎨 Color Picker</h4>
+                        <p>Pick the perfect shade for your designs or themes.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>📦 JSON Formatter</h4>
+                        <p>Instantly beautify or minify JSON data.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>⌨️ Typing Test</h4>
+                        <p>Track your typing speed and improve your accuracy.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>🔐 Password Generator</h4>
+                        <p>Create secure, random passphrases for your accounts.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>🧪 Lorem Ipsum Generator</h4>
+                        <p>Generate placeholder content for mockups and designs.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>📬 Spam Email Generator</h4>
+                        <p>Create fake emails for testing or signups.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>✅ Todo List</h4>
+                        <p>Manage tasks with offline cache and priority support.</p>
+                    </div>
+                    <div style={card}>
+                        <h4>📱 Responsive Design</h4>
+                        <p>Optimized for all screens—from mobile to desktop.</p>
+                    </div>
+                </div>
 
+                {/* Testimonials */}
+                <h2 style={headingStyle}>What Our Users Say</h2>
+                <div style={testimonialStyle}>
+                    "DevWiz is my daily go-to. Clean, efficient, and packed with tools I actually use." — <strong>Ritika S.</strong>
+                </div>
+                <div style={testimonialStyle}>
+                    "It replaced five tabs in my browser. Big fan of the markdown editor and color tools." — <strong>Lucas T.</strong>
+                </div>
+                <div style={testimonialStyle}>
+                    "Honestly didn’t expect the spam email generator to be this helpful. Love it!" — <strong>Manuel R.</strong>
                 </div>
             </div>
         </div>
